@@ -1,0 +1,134 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
+public class BuildToHack {
+	Scanner scan = new Scanner(System.in);
+
+	public void getnumber() {
+		byte[] arr = new byte[4];
+		for (int index = 0; index < 4; index++) {
+			System.out.println("Enter the number value " + (index + 1) + " :");
+			arr[index] = scan.nextByte();
+			while (arr[index] < -1 || arr[index] > 100) {
+				System.out.print("Not in Range , re-enter : ");
+				arr[index] = scan.nextByte();
+			}
+		}
+		System.out.println(" resultant number : ");
+		var resultant = scan.nextInt();
+		while (resultant < -1 || resultant > 99980002) {
+			System.out.print("Not in Range , re-enter : ");
+			resultant = scan.nextInt();
+		}
+		getAnswer(arr[0], arr[1], arr[2], arr[3], resultant);
+		return;
+	}
+	
+	public void getAnswer(int a , int b , int c , int d , int result) {
+		 	combination(a,b,c,d,result);
+	        combination(a,b,d,c,result);
+	        combination(a,c,d,b,result);
+	        combination(a,c,b,d,result);
+	        combination(a,d,b,c,result);
+	        combination(a,a,c,b,result);
+	        combination(b,a,c,d,result);
+	        combination(b,a,d,c,result);
+	        combination(b,c,d,a,result);
+	        combination(b,c,a,d,result);
+	        combination(b,d,a,c,result);
+	        combination(b,d,c,a,result);
+	        combination(c,b,a,d,result);
+	        combination(c,b,d,a,result);
+	        combination(c,a,d,b,result);
+	        combination(c,a,b,d,result);
+	        combination(c,d,b,a,result);
+	        combination(c,d,a,b,result);
+	        combination(d,b,a,c,result);
+	        combination(d,b,c,a,result);
+	        combination(d,a,c,b,result);
+	        combination(d,a,b,c,result);
+	        combination(d,c,b,a,result);
+	        combination(d,c,a,b,result);
+	}
+
+	public static void combination(int a, int b, int c, int d, int result) {
+		Map<Integer, String> operator = new HashMap<Integer, String>();
+		operator.put(0, "+");
+		operator.put(1, "-");
+		operator.put(2, "*");
+		operator.put(3, "/");
+		for (int i = 0; i < 4; i++) {
+			int result1 = a + b;
+			switch (i) {
+			case 0:
+				result1 = a + b;
+				break;
+			case 1:
+				result1 = a - b;
+				break;
+			case 2:
+				result1 = a * b;
+				break;
+			case 3:
+				if (a % b == 0 && a > b) {
+					result1 = a / b;
+				} else
+					continue;
+				break;
+			}
+			for (int j = 0; j < 4; j++) {
+				int result2 = result1 + c;
+				switch (j) {
+				case 0:
+					result2 = result1 + c;
+					break;
+				case 1:
+					result2 = result1 - c;
+					break;
+				case 2:
+					result2 = result1 * c;
+					break;
+				case 3:
+					if (result1 % c == 0 && result1 > c) {
+						result2 = result1 / c;
+					} else
+						continue;
+					break;
+				}
+				for (int k = 0; k < 4; k++) {
+					int result3 = 0;
+					switch (k) {
+					case 0:
+						result3 = result2 + d;
+						break;
+					case 1:
+						result3 = result2 - d;
+						break;
+					case 2:
+						result3 = result2 * d;
+						break;
+					case 3:
+						if (result2 % d == 0 && result2 > d) {
+							result3 = result2 / d;
+						} else
+							continue;
+						break;
+
+					}
+					if (result3 == result) {
+						System.out.println(
+								a + operator.get(i) + b + operator.get(j) + c + operator.get(k) + d + " = " + result);
+
+					}
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		BuildToHack hack = new BuildToHack();
+		hack.getnumber();
+	}
+}
