@@ -1,0 +1,60 @@
+/*
+
+Enter the String : ABC
+output - AABCC
+
+Enter the String : ABCD
+output - AABCDD
+
+*/
+
+
+
+
+class printABC
+{
+	public void print(){
+	 System.out.println("Enter the String :");
+	 Scanner scan = new Scanner(System.in);
+	 String str = scan.next();
+	 int n = str.length();
+		int mid = n/2;
+		int l = 1; 
+	   if(n % 2 != 0){	
+		for(int index = 0 ; index < n ; index++){
+			char ch = str.charAt(index);
+			if(mid >= 0){
+			for(int indexI = 0 ; indexI <= mid ; indexI++){
+				System.out.print(ch);
+			}
+			mid--;
+			}else{ 
+			for(int indexI = 0 ; indexI <= l ; indexI++){
+				System.out.print(ch);
+			}
+			l++;	
+			}	
+		}
+	  	}else{
+			for(int index = 0 ; index < n ; index++){
+			 char ch = str.charAt(index);
+			 if(mid > 0){
+				for(int indexI = 0 ; indexI < mid ; indexI++){
+				 System.out.print(ch);
+				}
+			   mid--;
+			}else{ 
+				for(int indexI = 0 ; indexI < l ; indexI++){
+				System.out.print(ch);
+			}
+			l++;	
+			}	
+		}
+	  }	
+	}
+
+	public static void main(String[] args){
+		printABC obj = new printABC();
+		obj.print();
+	}
+}
