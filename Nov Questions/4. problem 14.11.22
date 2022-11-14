@@ -1,0 +1,21 @@
+public class BounsingDistance {
+
+	public static void main(String[] args) {
+		BounsingDistance bd = new BounsingDistance();
+		System.out.println(bd.bounceDis(5, 0.5));
+	}
+	
+	public double bounceDis(int dis , double fac) {
+		double ans = 0;
+		double disCpy = dis;
+		while(disCpy > 1) {
+			ans += disCpy*fac;
+			disCpy*=fac;
+		}
+		ans *=2;
+		ans -= disCpy;
+		ans+=dis;
+		return ans;
+	}
+
+}
