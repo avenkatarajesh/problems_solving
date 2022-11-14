@@ -1,0 +1,27 @@
+
+import java.util.ArrayList;
+
+public class RemoveDuplicates {
+
+	public static void main(String[] args) {
+		RemoveDuplicates rd = new RemoveDuplicates();
+		System.out.println(rd.removingDuplicates("This is ZOHO and ZOHO is good"));
+	}
+
+	public String removingDuplicates(String str) {
+		String ans = "";
+		ArrayList<String> strCpy = new ArrayList<>();
+		String[] strArr = str.split(" ");
+		for (String string : strArr) {
+			if (!strCpy.contains(string)) {
+				strCpy.add(string);
+			}
+		}
+		for (String string : strCpy) {
+			ans += string;
+			ans += " ";
+		}
+		return ans;
+	}
+
+}
