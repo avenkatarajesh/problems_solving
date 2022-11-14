@@ -1,0 +1,33 @@
+package crm_questions;
+
+public class CheckDiagonal {
+
+	public static void main(String[] args) {
+		int[][] arr = { { 1, 2, 3, 4 }, { 4, 1, 2, 3 }, { 3, 4, 1, 2 }, { 2, 3, 4, 1 } };
+		CheckDiagonal obj = new CheckDiagonal();
+		System.out.println(obj.checkArr(arr));
+	}
+
+	public boolean checkArr(int[][] arr) {
+		for (int index = 0; index < arr[0].length; index++) {
+			if (!checkDiagonal(arr, 0, index))
+				return false;
+		}
+		for (int index = 0; index < arr.length; index++) {
+			if (!checkDiagonal(arr, index, 0))
+				return false;
+		}
+		return true;
+	}
+
+	public boolean checkDiagonal(int[][] arr, int row, int col) {
+		int n = arr[row][col];
+		int incre = 1;
+		while (row + incre < arr.length - 1 && col + incre < arr.length - 1) {
+			if (arr[row + incre][col + incre] != n)
+				return false;
+			incre++;
+		}
+		return true;
+	}
+}
