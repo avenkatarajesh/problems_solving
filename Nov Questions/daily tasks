@@ -1,0 +1,28 @@
+package crm_questions;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+
+public class NextOccurringNumberReplaceZero {
+
+	public static void main(String[] args) {
+		NextOccurringNumberReplaceZero nn = new NextOccurringNumberReplaceZero();
+		int[] arr = {1,2,2,5,3,5,6,5};
+		nn.ReplaceNextOccur(arr);
+		Arrays.stream(arr).forEach(n -> System.out.print(n+" "));
+	}
+	
+	public void ReplaceNextOccur(int[] arr) {
+		HashMap<Integer,Integer>value = new HashMap<>();
+		for(int index = 0 ; index < arr.length ;index++) {
+			if(value.containsKey(arr[index])) {
+				value.remove(arr[index]);
+				arr[index] = 0;
+			}else {
+				value.put(arr[index], 1);
+			}
+		}
+	}
+
+}
