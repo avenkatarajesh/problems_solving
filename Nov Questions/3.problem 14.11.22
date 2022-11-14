@@ -1,0 +1,36 @@
+package crm_questions;
+
+import java.util.Stack;
+
+public class ValidParenthesis {
+
+	public static void main(String[] args) {
+		ValidParenthesis vd = new ValidParenthesis();
+		System.out.println(vd.validParen("((abcd))(123)[a]"));
+	}
+
+	public boolean validParen(String str) {
+		Stack<Character> stack = new Stack<>();
+		for (char brace : str.toCharArray()) {
+			if (brace == ')' || brace == '}' || brace == ']' && stack.isEmpty())
+				return false;
+			if (brace == '(' || brace == '{' || brace == '[') {
+				stack.push(brace);
+			} else if (brace == ')') {
+				if (stack.isEmpty() || stack.pop() != '(')
+					return false;
+			} else if (brace == '}') {
+				if (stack.isEmpty() || stack.pop() != '{')
+					return false;
+			} else if (brace == ']') {
+				if (stack.isEmpty() || stack.pop() != '[')
+					return false;
+			}
+		}
+		if (stack.isEmpty())
+			return true;
+		return false;
+
+	}
+
+}
