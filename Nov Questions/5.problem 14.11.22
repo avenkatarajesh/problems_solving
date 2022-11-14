@@ -1,0 +1,26 @@
+
+public class EncryptString {
+
+	public static void main(String[] args) {
+		EncryptString es = new EncryptString();
+		System.out.println(es.encrpting("FADEabcz"));
+	}
+	
+	public String encrpting(String str) {
+		String ans ="";
+		for(char ch : str.toCharArray()) {
+			if(ch > 64 && ch < 91) {
+				int cha = ch - 'A';
+				cha = 'Z'-cha;
+				ans += (char)cha;
+			}
+			if(ch > 96 && ch < 123) {
+				int cha = ch - 'a';
+				cha = 'z'-cha;
+				ans += (char)cha;
+			}
+		}
+		return ans;
+	}
+
+}
